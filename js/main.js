@@ -108,3 +108,27 @@ function createPost() {
     })
 }
 createPost()
+// event handlers
+const box = document.getElementsByClassName('post')
+const footerCont = document.getElementsByClassName('likes')
+const like = document.getElementsByClassName('like-button')
+let postArray = [...box]
+let likes = [...footerCont]
+let button = [...like]
+
+button.forEach((item, index) => {
+    let number = document.getElementById(`like-counter-${posts[index].id}`)
+    console.log(number)
+    item.addEventListener('click', function () {
+        // creo gli if
+        if (item.classList.contains('like-button--liked')) {
+            posts[index].likes--
+            number.innerHTML = `${posts[index].likes}`
+            item.classList.remove('like-button--liked')
+        } else if (!item.classList.contains('like-button--liked')) {     
+                    posts[index].likes++
+            number.innerHTML = `${posts[index].likes}`
+            item.classList.add('like-button--liked')
+        }
+    })
+})
